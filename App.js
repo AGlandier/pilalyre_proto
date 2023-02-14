@@ -5,6 +5,7 @@ import { StyleSheet, Text, View, Button, FlatList } from 'react-native';
 
 import { bookArray, compareAlpha } from './books';
 import Row from './Row'
+import AddBookForm from './addBook';
 
 const styles = StyleSheet.create({
   container: {
@@ -24,11 +25,16 @@ export default class App extends React.Component {
 
   state = {
     showBooks : false,
+    showForm : false,
     bookArray: bookArray,
   }
 
   toggleBooks = () => {
-    this.setState(prevState => ({showBooks: !prevState.showBooks}))
+    this.setState(prevState => ({showBooks: !prevState.showForm}))
+  }
+
+  toggleForm = () => {
+    this.setState(prevState => ({showForm: !prevState.showBooks}))
   }
 
   sort = () => {
@@ -39,10 +45,11 @@ export default class App extends React.Component {
   renderItem = (obj) => <Row {...obj.item}/>
 
   render() {
+    if (this.state.showForm) {return <AddBookForm />}
     return(
       <View style={styles.container}>
         <Button title="toggle books" onPress={this.toggleBooks}/>
-        <Button title="sort books" onPress={this.sort}/>
+        <Button title="add book" onPress={this.toggleForm}/>
         {this.state.showBooks && (
         <FlatList 
         renderItem = {this.renderItem}
