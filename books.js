@@ -1,10 +1,12 @@
 const titles = ['Misery', 'It*', 'It**', 'Night Shift', 'The Shining', 'Carrie', 'Et on tuera tous les affreux', 'En avant la zizique',
-    "L'écume des jours", 'Le Hobbit', 'Les âmes croisées', "L'appel de Ctulhu", 'Les montagnes hallucinées']
+    "L'écume des jours", 'Le Hobbit', 'Les âmes croisées', "L'appel de Ctulhu", 'Les montagnes hallucinées', 'Eragon', 'A la recherche du temps perdu',
+    'Les fleurs du mal', 'Le coma des mortels']
 
 const authors = ['Stephen King', 'Stephen King', 'Stephen King', 'Stephen King', 'Stephen King', 'Stephen King', "Boris Vian",
-"Boris Vian", "Boris Vian", "J.R.R. Tolkien", "Pierre Bottero", "H.P. Lovecraft", "H.P. Lovecraft"]
+"Boris Vian", "Boris Vian", "J.R.R. Tolkien", "Pierre Bottero", "H.P. Lovecraft", "H.P. Lovecraft", 'Christopher Paolini', 'Marcel Proust', 'Charles Baudelaire',
+'Maxime Chattam']
 
-const alpha = ['k', 'k', 'k', 'k', 'k', 'k', 'v', 'v', 'v', 't', 'b', 'l', 'l']
+const alpha = ['k', 'k', 'k', 'k', 'k', 'k', 'v', 'v', 'v', 't', 'bo', 'l', 'l', 'pa', 'pr', 'ba', 'ch']
 
 const getTitle = (index) => `${titles[index]}`
 const getAuthor = (index) => `${authors[index]}`
@@ -15,7 +17,7 @@ const getAlpha = (index) => `${alpha[index]}`
 const createBook = (index) => ({title: getTitle(index), author: getAuthor(index), alpha: getAlpha(index)})
 
 //compare for alphabetizing
-export const compareNames = (book1, book2) => book1.alpha > book2.alpha
+export const compareAlpha = (book1, book2) => book1.alpha > book2.alpha
 
 //add keys based on index
 const addKeys = (val, key) => ({key: key, ...val})
