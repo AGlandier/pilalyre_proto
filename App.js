@@ -29,6 +29,10 @@ export default class App extends React.Component {
     bookArray: bookArray,
   }
 
+  addBook = newBook => {
+    this.setState(prevState => ({showForm: false, bookArray: [...prevState.bookArray, newBook]}))
+  }
+
   toggleBooks = () => {
     this.setState(prevState => ({showBooks: !prevState.showForm}))
   }
@@ -45,17 +49,11 @@ export default class App extends React.Component {
   renderItem = (obj) => <Row {...obj.item}/>
 
   render() {
-    if (this.state.showForm) {return <AddBookForm />}
+    if (this.state.showForm) {return <AddBookForm onSubmit={this.addBook}/>}
     return(
       <View style={styles.container}>
-        <Button title="toggle books" onPress={this.toggleBooks}/>
         <Button title="add book" onPress={this.toggleForm}/>
-        {this.state.showBooks && (
-        <FlatList 
-        renderItem = {this.renderItem}
-        data = {this.state.bookArray}
-        />
-        )}
+        <FlatList renderItem = {this.renderItem} data = {this.state.bookArray}/>
       </View>
     )  
   }
